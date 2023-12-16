@@ -15,8 +15,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   boot.initrd.kernelModules = [ "nvidia" ];
-boot.extraModulePackages = [ config.boot.kernelPackages.nvidia_x11 ];
-
+  boot.extraModulePackages = [ config.boot.kernelPackages.nvidia_x11 ];
   networking.hostName = "nixos"; # Define your hostname.
 #  networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -131,6 +130,7 @@ services.xserver.windowManager.dwm.package = pkgs.dwm.overrideAttrs {
     wineWowPackages.waylandFull
 	pkgs.neofetch	
 	pkgs.dunst
+	pkgs.android-tools
 	pkgs.zsh
 	pkgs.gcc
 	pkgs.discord
