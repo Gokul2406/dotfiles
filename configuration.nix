@@ -20,7 +20,7 @@
 #  networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
 fonts.packages = with pkgs; [
-  (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
+  (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" "JetBrainsMono" ]; })
   noto-fonts-emoji
 ];
 
@@ -28,6 +28,8 @@ services.xserver.windowManager.dwm.package = pkgs.dwm.overrideAttrs {
   src = /home/zenith/.config/dwm;
 };
 
+
+programs.steam.enable = true;
 
 
   # Configure network proxy if necessary
@@ -135,10 +137,13 @@ services.xserver.windowManager.dwm.package = pkgs.dwm.overrideAttrs {
 	pkgs.gcc
 	pkgs.discord
 	pkgs.waybar
+	pkgs.steam
+	pkgs.zotero
 	pkgs.eww-wayland
 	pkgs.python3
 	pkgs.vscode
 	pkgs.nodejs_21
+	pkgs.minecraft
 	libnotify
 	pkgs.unrar
 	 wineWowPackages.stable
@@ -247,6 +252,10 @@ services.xserver.windowManager.dwm.package = pkgs.dwm.overrideAttrs {
               nixpkgs.config.permittedInsecurePackages = [
                 "electron-25.9.0"
                 "unrar"
+                "steam"
+                "minecraft"
+                "steam-run"
+
               ];
 
 }
