@@ -28,8 +28,11 @@ services.xserver.windowManager.dwm.package = pkgs.dwm.overrideAttrs {
   src = /home/zenith/.config/dwm;
 };
 
+users.defaultUserShell = pkgs.fish;
+
 
 programs.steam.enable = true;
+programs.fish.enable = true;
 
 
   # Configure network proxy if necessary
@@ -130,6 +133,14 @@ programs.steam.enable = true;
 
     # native wayland support (unstable)
     wineWowPackages.waylandFull
+
+      fishPlugins.done
+  fishPlugins.fzf-fish
+  fishPlugins.forgit
+  fishPlugins.hydro
+  fzf
+  fishPlugins.grc
+  grc
 	pkgs.neofetch	
 	pkgs.dunst
 	pkgs.android-tools
