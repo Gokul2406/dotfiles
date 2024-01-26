@@ -4,6 +4,8 @@
 
 { config, lib, pkgs, inputs, ... }:
 
+
+
 {
   imports =
     [ # Include the results of the hardware scan.
@@ -24,20 +26,44 @@ fonts.packages = with pkgs; [
   noto-fonts-emoji
 ];
 
-services.xserver.windowManager.dwm.package = pkgs.dwm.overrideAttrs {
-  src = /home/zenith/.config/dwm;
-};
 
-users.defaultUserShell = pkgs.fish;
 
 
 programs.steam.enable = true;
 programs.fish.enable = true;
+programs.java.enable = true;
+programs.nix-ld.enable = true;
+programs.adb.enable = true;
+
+    
+
+    programs.starship.enable = true;
+    programs.starship.settings = {
+      add_newline = false;
+      format = "$shlvl$shell$username$hostname$nix_shell$git_branch$git_commit$git_state$git_status$directory$jobs$cmd_duration$character";
+      shlvl = {
+        disabled = false;
+        symbol = "ﰬ";
+        style = "bright-red bold";
+      };
+      shell = {
+        disabled = false;
+        format = "$indicator";
+        fish_indicator = "";
+        bash_indicator = "(bright-white) ";
+        zsh_indicator = "[ZSH](bright-white) ";
+      };
+      username = {
+        style_user = "bright-white bold";
+        style_root = "bright-red bold";
+      };
+    };
 
 
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+
+   
+   networking.proxy.default = "http://172.16.2.250:3128/";
+   networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -101,7 +127,7 @@ programs.fish.enable = true;
   users.users.zenith = {
     isNormalUser = true;
     description = "gokulpb";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "adbusers" ];
     packages = with pkgs; [
       firefox
       kate
@@ -114,6 +140,7 @@ programs.fish.enable = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
+
   environment.systemPackages = with pkgs; [
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
@@ -143,12 +170,21 @@ programs.fish.enable = true;
   grc
 	pkgs.neofetch	
 	pkgs.dunst
-	pkgs.android-tools
 	pkgs.zsh
 	pkgs.gcc
 	pkgs.discord
 	pkgs.waybar
+  pkgs.libreoffice
 	pkgs.steam
+  pkgs.julia-bin
+  pkgs.processing
+  pkgs.spotify
+  pkgs.go
+  pkgs.gtk3
+  pkgs.google-chrome
+	pkgs.cmake
+	pkgs.jdk
+	pkgs.cloudflare-warp
 	pkgs.zotero
 	pkgs.eww-wayland
 	pkgs.python3
@@ -237,7 +273,6 @@ programs.fish.enable = true;
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.11"; # Did you read the comment?
-  services.xserver.windowManager.dwm.enable = true;
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
 	
@@ -264,6 +299,7 @@ programs.fish.enable = true;
                 "electron-25.9.0"
                 "unrar"
                 "steam"
+                "google-chrome"
                 "minecraft"
                 "steam-run"
 
