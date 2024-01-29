@@ -176,6 +176,7 @@ programs.adb.enable = true;
 	pkgs.waybar
   pkgs.libreoffice
 	pkgs.steam
+  pkgs.mesa
   pkgs.julia-bin
   pkgs.processing
   pkgs.spotify
